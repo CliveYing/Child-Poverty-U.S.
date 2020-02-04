@@ -1,0 +1,41 @@
+---
+title: "Group6"
+author: "Clive"
+date: "13/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(dplyr)
+poor.kids.data <- read.csv("income under 15.csv")
+
+head(poor.kids.data)
+
+library(sf)
+
+post.code.data <- read.csv("child poverty/other abs data/postcode data.csv")
+head(post.code.data)
+
+county.data<-poor.kids.data %>%
+
+select(POA, Living.in.poverty)%>%
+  
+  # merge function merge two dataset together, it automatically merge base on the similar column.
+  merge(
+
+post.code.data %>%
+ dplyr::rename(POA = Census_Code_2016, county = Census_Name_2016) %>%
+
+  dplyr::select(POA,county)
+
+)
+```
+```{r}
+select(Id2, below.poverty.rate)
+```
+
